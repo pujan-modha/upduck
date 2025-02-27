@@ -122,7 +122,7 @@ function noSearchDefaultPageRender(): void {
           <input 
             type="text" 
             class="url-input"
-            value="https://bang.pujan.pm?q=%s"
+            value="https://search.pujan.pm?q=%s"
             readonly 
           />
           <button class="copy-button">
