@@ -1,5 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"); */
-
 /* Font fallback that closely matches Inter metrics */
 @font-face {
   font-family: "Inter Fallback";
@@ -9,26 +7,45 @@
 }
 
 :root {
-  font-family:
-    Inter,
-    "Inter Fallback",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  font-family: Inter, "Inter Fallback", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Light theme variables */
+  --bg-color: #f0f0f0;
+  --text-color: rgba(15, 15, 15, 0.9);
+  --secondary-text: rgba(15, 15, 15, 0.6);
+  --search-bg: rgba(15, 15, 15, 0.05);
+  --input-border: rgba(15, 15, 15, 0.2);
+  --button-hover-bg: rgba(15, 15, 15, 0.1);
+  --instructions-bg: rgba(15, 15, 15, 0.03);
+  --shadow-color: rgba(15, 15, 15, 0.1);
+  --footer-text: rgba(15, 15, 15, 0.5);
+  --footer-hover: rgba(15, 15, 15, 0.8);
+  --icon-filter: invert(0);
+  --success-color: #28a745;
 }
 
+:root[data-theme="dark"] {
+  /* Dark theme variables */
+  --bg-color: #0f0f0f;
+  --text-color: rgba(240, 240, 240, 0.9);
+  --secondary-text: rgba(240, 240, 240, 0.6);
+  --search-bg: rgba(240, 240, 240, 0.05);
+  --input-border: rgba(240, 240, 240, 0.2);
+  --button-hover-bg: rgba(240, 240, 240, 0.1);
+  --instructions-bg: rgba(240, 240, 240, 0.03);
+  --shadow-color: rgba(240, 240, 240, 0.1);
+  --footer-text: rgba(240, 240, 240, 0.5);
+  --footer-hover: rgba(240, 240, 240, 0.8);
+  --icon-filter: invert(1);
+}
+
+/* Base styles */
 * {
   margin: 0;
   padding: 0;
@@ -45,7 +62,9 @@ body {
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
-  color: #1a1a1a;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 h1,
@@ -59,10 +78,12 @@ h6 {
 }
 
 a {
-  color: #444444;
+  color: var(--footer-text);
+  text-decoration: none;
 }
+
 a:hover {
-  color: #888888;
+  color: var(--footer-hover);
 }
 
 button {
@@ -77,94 +98,44 @@ textarea {
   font: inherit;
 }
 
-/* Add these new styles */
-.url-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
+/* Theme enforcement */
+html[data-theme="dark"],
+body[data-theme="dark"] {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color);
 }
 
-/* Add this new style */
+[data-theme="dark"] .search-container {
+  background-color: var(--bg-color);
+}
+
+/* Layout & container styles */
+.search-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 .content-container {
   max-width: 36rem;
   text-align: center;
   padding: 0 8px;
 }
 
-/* Update url-input width to be 100% since container will control max width */
-.url-input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
-  background: #f5f5f5;
-}
-
-.copy-button {
-  padding: 8px;
-  color: #666;
-  border-radius: 4px;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.copy-button:hover {
-  background: #f0f0f0;
-}
-
-.copy-button:active {
-  background: #e5e5e5;
-}
-
-.copy-button img {
-  width: 20px;
-  height: 20px;
-}
-
-.copy-button.copied {
-  background: #28a745;
-}
-
-/* Add footer styles */
-.footer {
-  position: static;
-  margin-top: auto;
-  padding-bottom: 16px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-}
-
-.footer a {
-  color: #666;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.footer a:hover {
-  color: #333;
-}
-
-/* Keep all existing styles and add these new styles at the end */
-
-.search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
-  padding-top: 15vh;
-}
-
+/* Search form elements */
 .search-logo {
   font-size: 3rem;
   margin-bottom: 2rem;
-  color: #1a1a1a;
+  color: var(--text-color);
 }
 
 .search-form {
@@ -177,39 +148,396 @@ textarea {
 .search-input {
   flex: 1;
   padding: 12px 16px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--input-border);
   border-radius: 24px 0 0 24px;
   font-size: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--shadow-color);
+  background-color: var(--search-bg);
+  color: var(--text-color);
 }
 
 .search-input:focus {
   outline: none;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  border-color: #bbb;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  border-color: var(--input-border);
 }
 
 .search-button {
   padding: 0 20px;
-  background: #f8f8f8;
-  border: 1px solid #ddd;
+  background: var(--search-bg);
+  border: 1px solid var(--input-border);
   border-left: none;
   border-radius: 0 24px 24px 0;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s;
+  color: var(--text-color);
 }
 
 .search-button:hover {
-  background: #f0f0f0;
+  background: var(--button-hover-bg);
 }
 
+/* Instructions area */
 .instructions {
   max-width: 584px;
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
-  background: #f8f8f8;
+  background: var(--instructions-bg);
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+/* Instructions text styling */
+.instructions p {
+  color: var(--text-color);
+}
+
+.instructions .highlight {
+  color: var(--secondary-text);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.instructions a {
+  color: var(--secondary-text);
+  text-decoration: underline;
+}
+
+.instructions a:hover {
+  color: var(--footer-hover);
+}
+
+.instructions small {
+  color: var(--secondary-text);
+}
+
+/* Update for the url-container and components */
+.url-container {
+  display: flex;
+  align-items: stretch; /* Changed from center to stretch */
+  max-width: 500px;
+  margin: 16px auto 0;
+}
+
+.url-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px 0 0 4px;
+  background: var(--search-bg);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  height: 38px; /* Set explicit height */
+  box-sizing: border-box;
+}
+
+.copy-button {
+  padding: 0 12px;
+  background: var(--search-bg);
+  border: 1px solid var(--input-border);
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  color: var(--secondary-text);
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px; /* Match height with input */
+  box-sizing: border-box;
+}
+
+.copy-button:hover {
+  background: var(--button-hover-bg);
+}
+
+.copy-button:active {
+  background: var(--button-hover-bg);
+}
+
+.copy-button img {
+  width: 20px;
+  height: 20px;
+  filter: var(--icon-filter);
+}
+
+.copy-button.copied {
+  background: var(--success-color);
+}
+
+/* Footer styles */
+.footer {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--footer-text);
+}
+
+.footer a {
+  color: var(--footer-text);
+  font-weight: 500;
+}
+
+.footer a:hover {
+  color: var(--footer-hover);
+}
+
+/* UI Controls */
+.theme-switch,
+.settings-button {
+  position: absolute;
+  top: 20px;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.theme-switch {
+  right: 20px;
+}
+
+.settings-button {
+  left: 20px;
+}
+
+.theme-switch:hover,
+.settings-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.theme-switch img {
+  width: 24px;
+  height: 24px;
+  filter: var(--icon-filter);
+}
+
+.settings-button img {
+  width: 22px;
+  height: 22px;
+  filter: var(--icon-filter);
+}
+
+/* Settings modal styles */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop.visible {
+  display: flex;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modal-dialog {
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 36rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--input-border);
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.modal-close {
+  font-size: 1.75rem;
+  height: 36px;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--search-bg);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: all 0.2s;
+  margin: -8px -8px 0 0;
+  line-height: 0;
+  padding-bottom: 3px;
+}
+
+.modal-close:hover {
+  background: var(--button-hover-bg);
+}
+
+/* Settings form styles */
+.settings-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.settings-label {
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.bang-selector {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.75rem;
+  position: relative;
+}
+
+#default-bang {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--search-bg);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  min-width: 180px;
+  flex-grow: 1;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(15, 15, 15, 0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 1em;
+  cursor: pointer;
+}
+
+[data-theme="dark"] #default-bang {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(240, 240, 240, 0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.custom-bang-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  gap: 0.75rem;
+}
+
+.custom-bang-container .settings-label {
+  white-space: nowrap;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.custom-bang-input {
+  flex-grow: 1;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--search-bg);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.custom-bang-input:hover,
+.custom-bang-input:focus {
+  border-color: var(--input-border);
+  box-shadow: 0 1px 6px var(--shadow-color);
+  outline: none;
+}
+
+.save-button {
+  white-space: nowrap;
+  padding: 0.7rem 1.2rem;
+  background: var(--button-hover-bg);
+  border: none;
+  border-radius: 8px;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.save-button:hover {
+  filter: brightness(1.1);
+}
+
+.bang-saved-indicator {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--success-color);
+  font-size: 0.95rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.bang-saved-indicator.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Browser-specific fixes */
+select option {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* For Webkit browsers like Chrome/Safari */
+[data-theme="dark"] select option {
+  background-color: #1f1f1f;
+  color: rgba(240, 240, 240, 0.9);
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+  [data-theme="dark"] select,
+  [data-theme="dark"] select option {
+    background-color: #1f1f1f;
+    color: rgba(240, 240, 240, 0.9);
+  }
 }
