@@ -122,7 +122,7 @@ function noSearchDefaultPageRender(): void {
           <input 
             type="text" 
             class="url-input"
-            value="https://search.pujan.pm?q=%s"
+            value="https://upduck.vercel.app?q=%s"
             readonly 
           />
           <button class="copy-button">
@@ -135,7 +135,7 @@ function noSearchDefaultPageRender(): void {
       <footer class="footer">
         <a href="https://pujan.pm" target="_blank">pujan.pm</a>
         •
-        <a href="https://github.com/pujan-modha/unduck" target="_blank">github</a>
+        <a href="https://github.com/pujan-modha/upduck" target="_blank">github</a>
       </footer>
     </div>
     
