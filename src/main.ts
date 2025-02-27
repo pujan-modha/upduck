@@ -100,7 +100,7 @@ function noSearchDefaultPageRender(): void {
              }" />
       </button>
       
-      <h1 class="search-logo">Und*ck</h1>
+      <h1 class="search-logo">Search</h1>
       
       <form id="search-form" class="search-form">
         <input 
@@ -117,7 +117,7 @@ function noSearchDefaultPageRender(): void {
       </form>
       
       <div class="instructions">
-        <p>Use DuckDuckGo's bangs, but faster. Add this URL as a custom search engine in your browser:</p>
+        <p>Add this URL as a custom search engine in your browser:</p>
         <div class="url-container"> 
           <input 
             type="text" 
@@ -129,7 +129,7 @@ function noSearchDefaultPageRender(): void {
             <img src="/clipboard.svg" alt="Copy" />
           </button>
         </div>
-        <p><small>Enables <a href="https://duckduckgo.com/bang.html" target="_blank">all DuckDuckGo bangs</a> with minimal redirect time.</small></p>
+        <p><small>Enables <a href="https://duckduckgo.com/bang.html" target="_blank">DuckDuckGo bangs</a> with minimal redirect time.</small></p>
       </div>
       
       <footer class="footer">
