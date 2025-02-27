@@ -100,7 +100,7 @@ function noSearchDefaultPageRender(): void {
              }" />
       </button>
       
-      <h1 class="search-logo">Search</h1>
+      <h1 class="search-logo">Upduck</h1>
       
       <form id="search-form" class="search-form">
         <input 
