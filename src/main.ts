@@ -4,10 +4,22 @@ import "./global.css";
 function noSearchDefaultPageRender() {
   const app = document.querySelector<HTMLDivElement>("#app")!;
   app.innerHTML = `
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
-      <div class="content-container">
-        <h1>Und*ck</h1>
-        <p>DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. Enables <a href="https://duckduckgo.com/bang.html" target="_blank">all of DuckDuckGo's bangs.</a></p>
+    <div class="search-container">
+      <h1 class="search-logo">Und*ck</h1>
+      
+      <form id="search-form" class="search-form">
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search with bangs (e.g. !w cats)"
+          autofocus
+        />
+        <button type="submit" class="search-button">Search</button>
+      </form>
+      
+      <div class="instructions">
+        <p>Use DuckDuckGo's bangs, but faster. Add this URL as a custom search engine in your browser:</p>
         <div class="url-container"> 
           <input 
             type="text" 
@@ -19,7 +31,9 @@ function noSearchDefaultPageRender() {
             <img src="/clipboard.svg" alt="Copy" />
           </button>
         </div>
+        <p><small>Enables <a href="https://duckduckgo.com/bang.html" target="_blank">all DuckDuckGo bangs</a> with minimal redirect time.</small></p>
       </div>
+      
       <footer class="footer">
         <a href="https://pujan.pm" target="_blank">pujan.pm</a>
         •
@@ -31,6 +45,8 @@ function noSearchDefaultPageRender() {
   const copyButton = app.querySelector<HTMLButtonElement>(".copy-button")!;
   const copyIcon = copyButton.querySelector("img")!;
   const urlInput = app.querySelector<HTMLInputElement>(".url-input")!;
+  const searchForm = app.querySelector<HTMLFormElement>("#search-form")!;
+  const searchInput = app.querySelector<HTMLInputElement>("#search-input")!;
 
   copyButton.addEventListener("click", async () => {
     await navigator.clipboard.writeText(urlInput.value);
@@ -39,6 +55,14 @@ function noSearchDefaultPageRender() {
     setTimeout(() => {
       copyIcon.src = "/clipboard.svg";
     }, 2000);
+  });
+
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (query) {
+      window.location.href = `?q=${encodeURIComponent(query)}`;
+    }
   });
 }
 
