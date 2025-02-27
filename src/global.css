@@ -541,3 +541,194 @@ select option {
     color: rgba(240, 240, 240, 0.9);
   }
 }
+
+/* Add this new styles section before the responsive section */
+.search-icon {
+  width: 18px;
+  height: 18px;
+  filter: var(--icon-filter);
+  display: none; /* Hidden by default, shown in mobile view */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .search-logo {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-form {
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row; /* Keep them in a row for tablets */
+  }
+
+  .search-input {
+    border-radius: 24px 0 0 24px;
+    text-align: left;
+  }
+
+  .search-button {
+    border-radius: 0 24px 24px 0;
+    width: auto;
+    padding: 0 18px;
+    border-left: none; /* Fixed: this was causing issues */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-button .search-icon {
+    display: block;
+  }
+
+  .search-button-text {
+    display: none;
+  }
+
+  .instructions {
+    width: 90%;
+    max-width: 400px;
+    padding: 1rem 0.75rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .url-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: row; /* Ensure it's row */
+  }
+
+  .url-input {
+    border-radius: 4px 0 0 4px;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .copy-button {
+    width: auto;
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    padding: 1rem;
+  }
+
+  .theme-switch,
+  .settings-button {
+    top: 10px;
+  }
+
+  .theme-switch {
+    right: 10px;
+  }
+
+  .settings-button {
+    left: 10px;
+  }
+
+  .search-logo {
+    font-size: 2rem;
+    margin-top: 3rem; /* Increased to make room for buttons */
+    margin-bottom: 1.5rem;
+  }
+
+  .search-form {
+    width: 90%;
+    display: flex;
+    flex-direction: row; /* Maintain horizontal layout even on mobile */
+  }
+
+  .search-input {
+    flex: 1;
+    border-radius: 24px 0 0 24px; /* Horizontal layout borders */
+    border-right: none;
+    text-align: left;
+  }
+
+  .search-button {
+    width: auto; /* Don't make full width */
+    border-radius: 0 24px 24px 0; /* Horizontal layout borders */
+    border-left: none;
+    padding: 0 16px;
+  }
+
+  .instructions {
+    width: 90%;
+    padding: 1rem 0.75rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .url-container {
+    display: flex;
+    flex-direction: row; /* Maintain horizontal layout on mobile */
+    width: 100%;
+  }
+
+  .url-input {
+    flex: 1; /* Take available space */
+    border-radius: 4px 0 0 4px; /* Horizontal borders */
+    border-right: none;
+    text-align: left;
+  }
+
+  .copy-button {
+    width: auto; /* Don't make full width */
+    border-radius: 0 4px 4px 0; /* Horizontal layout borders */
+    border-left: none;
+  }
+
+  .modal-dialog {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .settings-row,
+  .custom-bang-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bang-selector {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #default-bang {
+    width: 100%;
+  }
+
+  .custom-bang-container {
+    flex-direction: column;
+  }
+
+  .save-button {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  /* Fix for the settings modal layout */
+  .custom-bang-container {
+    flex-direction: row; /* Keep this as row */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+  }
+
+  .custom-bang-input {
+    flex: 1;
+  }
+
+  .save-button {
+    margin-top: 0; /* Remove top margin */
+    width: auto; /* Don't stretch full width */
+  }
+}
+
+/* Add viewport meta tag if it's not already in your HTML head */

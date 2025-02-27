@@ -100,7 +100,7 @@ function noSearchDefaultPageRender(): void {
              }" />
       </button>
       
-      <h1 class="search-logo">Search</h1>
+      <h1 class="search-logo">Und*ck</h1>
       
       <form id="search-form" class="search-form">
         <input 
@@ -110,7 +110,10 @@ function noSearchDefaultPageRender(): void {
           placeholder="Search with bangs (e.g. !w cats)"
           autofocus
         />
-        <button type="submit" class="search-button">Search</button>
+        <button type="submit" class="search-button">
+          <span class="search-button-text">Search</span>
+          <img src="/search.svg" alt="Search" class="search-icon" />
+        </button>
       </form>
       
       <div class="instructions">
